@@ -1,3 +1,8 @@
 sounddevice
 numpy
 pyaudio
+faster-whisper
+eyed3
+black 
+pydub
+openai

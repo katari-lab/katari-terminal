@@ -53,10 +53,12 @@ class TerminalComponent:
 
     def run(self):
         input_devices = self.audio_gateway.get_input_devices()
-        # pprint(input_devices)
-        selected_device = input_devices[1]
+        pprint(input_devices)
+        input_device_id = int(input("Select the input device you want to use for transcription \n"))
+        selected_device = input_devices[input_device_id]
         LOGGER.info(f"Transcript using input device: {selected_device}")        
         try:
+
             while True:
                 input("Press Enter to start recording or Ctrl+C to cancel...")
                 transcript , command = self.capture_action(selected_device)

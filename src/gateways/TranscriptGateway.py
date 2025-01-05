@@ -11,7 +11,10 @@ class TranscriptGateway:
         model_size = "small.en"
         device_type = "cuda" if torch.cuda.is_available() else "cpu"
         LOGGER.info("using %s", device_type)
-        self.model = WhisperModel(model_size, device="cuda", compute_type="float16")
+        if device_type == "cuda":
+            self.model = WhisperModel(model_size, device="cuda", compute_type="float16")
+        else:            
+            self.model = WhisperModel(model_size, device=device_type)
 
     def transcript(self, audio_file_path, language="en"):
         transcription_segments, transcription_info = self.model.transcribe(
